@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="th-TH" class="no-js">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<style type="text/css">
+		.s-mainheader {
+			width: 100%;
+			height: 54px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 4000;
+			background: rgba(255, 255, 255, .88);
+			border-bottom: 1px solid #f1f3f6;
+			-webkit-backdrop-filter: saturate(2) blur(5px);
+			backdrop-filter: saturate(2) blur(5px)
+		}
+
+		.s-mainheader-blank {
+			width: 100%;
+			height: 54px
+		}
+
+		.s-mainheader .item-a {
+			height: 100%
+		}
+
+		.mainheader-logo {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 128px;
+			padding: 12px 0;
+			margin: 0;
+			z-index: 4000
+		}
+
+		.mainheader-logo .logo-img {
+			width: 30px
+		}
+
+		.mainheader-logo .logo-text {
+			position: absolute;
+			top: 19px;
+			left: 40px;
+			width: 64px
+		}
+
+		.mainheader-logo .logo-text-b {
+			opacity: 1
+		}
+
+		.mainheader-logo .logo-text-w {
+			opacity: 0
+		}
+
+		.b-mainheader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%
+		}
+
+		.b-nav {
+			text-align: center
+		}
+
+		.b-nav a {
+			font: 22px DBHeaventMd, Tahoma, sans-serif;
+			display: inline-block;
+			position: relative;
+			color: #343434;
+			padding: 16px 14px;
+			transform: translateY(0);
+			opacity: 1
+		}
+
+		.b-nav a.active,
+		.b-nav a:hover {
+			color: #3ed995
+		}
+
+		.b-nav a .desc {
+			font: 20px DBHeaventR, Tahoma, sans-serif;
+			display: none
+		}
+
+		.mainheader-mnav {
+			position: absolute;
+			top: 9px;
+			right: 0;
+			z-index: 4000;
+			display: none;
+			cursor: pointer
+		}
+
+		.mainheader-btn-search {
+			position: absolute;
+			top: 0;
+			right: 0;
+			cursor: pointer;
+			padding: 13px 0 13px 15px;
+			z-index: 4000
+		}
+
+		.mainheader-btn-search i {
+			color: #343434
+		}
+
+		.b-breadcrumb ul {
+			display: inline-block
+		}
+
+		.b-breadcrumb li {
+			font: 18px/18px DBHeaventMd, Tahoma, sans-serif;
+			color: #585858;
+			list-style: none;
+			display: inline-block;
+			vertical-align: middle
+		}
+
+		.b-breadcrumb .item.first {
+			list-style: none;
+			margin: 0
+		}
+
+		.b-breadcrumb .item.first a,
+		.b-breadcrumb .item.first span {
+			padding-left: 0
+		}
+
+		.b-breadcrumb li a,
+		.b-breadcrumb li i,
+		.b-breadcrumb li span {
+			color: #585858;
+			display: inline-block;
+			padding: 5px;
+			vertical-align: middle
+		}
+
+		.b-breadcrumb li i {
+			font-size: 16px;
+			padding: 0
+		}
+
+		.b-breadcrumb li a:hover {
+			color: #3ed995
+		}
+	</style>
+	<!-- CSS
+	================================= -->
+	<link rel="preload" href="system/wp-content/themes/lovefitt/css/icofont.min.css" as="style"
+		onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="stylesheet" href="system/wp-content/themes/lovefitt/css/icofont.min.css">
+	<noscript>
+		<link rel="stylesheet" href="system/wp-content/themes/lovefitt/css/icofont.min.css">
+	</noscript>
+	<!-- <link rel="preload" href="/css/css-global.css?v=5.1" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
+	<link rel="stylesheet" href="system/wp-content/themes/lovefitt/css/css-global.css">
+	<noscript>
+		<link rel="stylesheet" href="system/wp-content/themes/lovefitt/css/css-global.css">
+	</noscript>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+
+	<title>เครื่องคำนวณหาค่าดัชนีมวลกาย (BMI)</title>
+
+	<style id='classic-theme-styles-inline-css' type='text/css'>
+		/*! This file is auto-generated */
+		.wp-block-button__link {
+			color: #fff;
+			background-color: #32373c;
+			border-radius: 9999px;
+			box-shadow: none;
+			text-decoration: none;
+			padding: calc(.667em + 2px) calc(1.333em + 2px);
+			font-size: 1.125em
+		}
+
+		.wp-block-file__button {
+			background: #32373c;
+			color: #fff;
+			text-decoration: none
+		}
+	</style>
+	<style id='global-styles-inline-css' type='text/css'>
+		body {
+			--wp--preset--color--black: #000000;
+			--wp--preset--color--cyan-bluish-gray: #abb8c3;
+			--wp--preset--color--white: #ffffff;
+			--wp--preset--color--pale-pink: #f78da7;
+			--wp--preset--color--vivid-red: #cf2e2e;
+			--wp--preset--color--luminous-vivid-orange: #ff6900;
+			--wp--preset--color--luminous-vivid-amber: #fcb900;
+			--wp--preset--color--light-green-cyan: #7bdcb5;
+			--wp--preset--color--vivid-green-cyan: #00d084;
+			--wp--preset--color--pale-cyan-blue: #8ed1fc;
+			--wp--preset--color--vivid-cyan-blue: #0693e3;
+			--wp--preset--color--vivid-purple: #9b51e0;
+			--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6, 147, 227, 1) 0%, rgb(155, 81, 224) 100%);
+			--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+			--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgba(252, 185, 0, 1) 0%, rgba(255, 105, 0, 1) 100%);
+			--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgba(255, 105, 0, 1) 0%, rgb(207, 46, 46) 100%);
+			--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+			--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+			--wp--preset--gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+			--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+			--wp--preset--gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+			--wp--preset--gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+			--wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+			--wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+			--wp--preset--font-size--small: 13px;
+			--wp--preset--font-size--medium: 20px;
+			--wp--preset--font-size--large: 36px;
+			--wp--preset--font-size--x-large: 42px;
+			--wp--preset--spacing--20: 0.44rem;
+			--wp--preset--spacing--30: 0.67rem;
+			--wp--preset--spacing--40: 1rem;
+			--wp--preset--spacing--50: 1.5rem;
+			--wp--preset--spacing--60: 2.25rem;
+			--wp--preset--spacing--70: 3.38rem;
+			--wp--preset--spacing--80: 5.06rem;
+			--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+			--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+			--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+			--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);
+			--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);
+		}
+
+		:where(.is-layout-flex) {
+			gap: 0.5em;
+		}
+
+		:where(.is-layout-grid) {
+			gap: 0.5em;
+		}
+
+		body .is-layout-flow>.alignleft {
+			float: left;
+			margin-inline-start: 0;
+			margin-inline-end: 2em;
+		}
+
+		body .is-layout-flow>.alignright {
+			float: right;
+			margin-inline-start: 2em;
+			margin-inline-end: 0;
+		}
+
+		body .is-layout-flow>.aligncenter {
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+
+		body .is-layout-constrained>.alignleft {
+			float: left;
+			margin-inline-start: 0;
+			margin-inline-end: 2em;
+		}
+
+		body .is-layout-constrained>.alignright {
+			float: right;
+			margin-inline-start: 2em;
+			margin-inline-end: 0;
+		}
+
+		body .is-layout-constrained>.aligncenter {
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+
+		body .is-layout-constrained> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+			max-width: var(--wp--style--global--content-size);
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+
+		body .is-layout-constrained>.alignwide {
+			max-width: var(--wp--style--global--wide-size);
+		}
+
+		body .is-layout-flex {
+			display: flex;
+		}
+
+		body .is-layout-flex {
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		body .is-layout-flex>* {
+			margin: 0;
+		}
+
+		body .is-layout-grid {
+			display: grid;
+		}
+
+		body .is-layout-grid>* {
+			margin: 0;
+		}
+
+		:where(.wp-block-columns.is-layout-flex) {
+			gap: 2em;
+		}
+
+		:where(.wp-block-columns.is-layout-grid) {
+			gap: 2em;
+		}
+
+		:where(.wp-block-post-template.is-layout-flex) {
+			gap: 1.25em;
+		}
+
+		:where(.wp-block-post-template.is-layout-grid) {
+			gap: 1.25em;
+		}
+
+		.has-black-color {
+			color: var(--wp--preset--color--black) !important;
+		}
+
+		.has-cyan-bluish-gray-color {
+			color: var(--wp--preset--color--cyan-bluish-gray) !important;
+		}
+
+		.has-white-color {
+			color: var(--wp--preset--color--white) !important;
+		}
+
+		.has-pale-pink-color {
+			color: var(--wp--preset--color--pale-pink) !important;
+		}
+
+		.has-vivid-red-color {
+			color: var(--wp--preset--color--vivid-red) !important;
+		}
+
+		.has-luminous-vivid-orange-color {
+			color: var(--wp--preset--color--luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-amber-color {
+			color: var(--wp--preset--color--luminous-vivid-amber) !important;
+		}
+
+		.has-light-green-cyan-color {
+			color: var(--wp--preset--color--light-green-cyan) !important;
+		}
+
+		.has-vivid-green-cyan-color {
+			color: var(--wp--preset--color--vivid-green-cyan) !important;
+		}
+
+		.has-pale-cyan-blue-color {
+			color: var(--wp--preset--color--pale-cyan-blue) !important;
+		}
+
+		.has-vivid-cyan-blue-color {
+			color: var(--wp--preset--color--vivid-cyan-blue) !important;
+		}
+
+		.has-vivid-purple-color {
+			color: var(--wp--preset--color--vivid-purple) !important;
+		}
+
+		.has-black-background-color {
+			background-color: var(--wp--preset--color--black) !important;
+		}
+
+		.has-cyan-bluish-gray-background-color {
+			background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+		}
+
+		.has-white-background-color {
+			background-color: var(--wp--preset--color--white) !important;
+		}
+
+		.has-pale-pink-background-color {
+			background-color: var(--wp--preset--color--pale-pink) !important;
+		}
+
+		.has-vivid-red-background-color {
+			background-color: var(--wp--preset--color--vivid-red) !important;
+		}
+
+		.has-luminous-vivid-orange-background-color {
+			background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-amber-background-color {
+			background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+		}
+
+		.has-light-green-cyan-background-color {
+			background-color: var(--wp--preset--color--light-green-cyan) !important;
+		}
+
+		.has-vivid-green-cyan-background-color {
+			background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+		}
+
+		.has-pale-cyan-blue-background-color {
+			background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+		}
+
+		.has-vivid-cyan-blue-background-color {
+			background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+		}
+
+		.has-vivid-purple-background-color {
+			background-color: var(--wp--preset--color--vivid-purple) !important;
+		}
+
+		.has-black-border-color {
+			border-color: var(--wp--preset--color--black) !important;
+		}
+
+		.has-cyan-bluish-gray-border-color {
+			border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+		}
+
+		.has-white-border-color {
+			border-color: var(--wp--preset--color--white) !important;
+		}
+
+		.has-pale-pink-border-color {
+			border-color: var(--wp--preset--color--pale-pink) !important;
+		}
+
+		.has-vivid-red-border-color {
+			border-color: var(--wp--preset--color--vivid-red) !important;
+		}
+
+		.has-luminous-vivid-orange-border-color {
+			border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-amber-border-color {
+			border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+		}
+
+		.has-light-green-cyan-border-color {
+			border-color: var(--wp--preset--color--light-green-cyan) !important;
+		}
+
+		.has-vivid-green-cyan-border-color {
+			border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+		}
+
+		.has-pale-cyan-blue-border-color {
+			border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+		}
+
+		.has-vivid-cyan-blue-border-color {
+			border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+		}
+
+		.has-vivid-purple-border-color {
+			border-color: var(--wp--preset--color--vivid-purple) !important;
+		}
+
+		.has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+			background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+		}
+
+		.has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+			background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+		}
+
+		.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+			background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-orange-to-vivid-red-gradient-background {
+			background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+		}
+
+		.has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+			background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+		}
+
+		.has-cool-to-warm-spectrum-gradient-background {
+			background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+		}
+
+		.has-blush-light-purple-gradient-background {
+			background: var(--wp--preset--gradient--blush-light-purple) !important;
+		}
+
+		.has-blush-bordeaux-gradient-background {
+			background: var(--wp--preset--gradient--blush-bordeaux) !important;
+		}
+
+		.has-luminous-dusk-gradient-background {
+			background: var(--wp--preset--gradient--luminous-dusk) !important;
+		}
+
+		.has-pale-ocean-gradient-background {
+			background: var(--wp--preset--gradient--pale-ocean) !important;
+		}
+
+		.has-electric-grass-gradient-background {
+			background: var(--wp--preset--gradient--electric-grass) !important;
+		}
+
+		.has-midnight-gradient-background {
+			background: var(--wp--preset--gradient--midnight) !important;
+		}
+
+		.has-small-font-size {
+			font-size: var(--wp--preset--font-size--small) !important;
+		}
+
+		.has-medium-font-size {
+			font-size: var(--wp--preset--font-size--medium) !important;
+		}
+
+		.has-large-font-size {
+			font-size: var(--wp--preset--font-size--large) !important;
+		}
+
+		.has-x-large-font-size {
+			font-size: var(--wp--preset--font-size--x-large) !important;
+		}
+
+		.wp-block-navigation a:where(:not(.wp-element-button)) {
+			color: inherit;
+		}
+
+		:where(.wp-block-post-template.is-layout-flex) {
+			gap: 1.25em;
+		}
+
+		:where(.wp-block-post-template.is-layout-grid) {
+			gap: 1.25em;
+		}
+
+		:where(.wp-block-columns.is-layout-flex) {
+			gap: 2em;
+		}
+
+		:where(.wp-block-columns.is-layout-grid) {
+			gap: 2em;
+		}
+
+		.wp-block-pullquote {
+			font-size: 1.5em;
+			line-height: 1.6;
+		}
+	</style>
+
+
+	
+	<style>
+		.no-js img.lazyload {
+			display: none;
+		}
+
+		figure.wp-block-image img.lazyloading {
+			min-width: 150px;
+		}
+
+		.lazyload,
+		.lazyloading {
+			opacity: 0;
+		}
+
+		.lazyloaded {
+			opacity: 1;
+			transition: opacity 400ms;
+			transition-delay: 0ms;
+		}
+		nav{
+			margin-left: 10px;
+		}
+	</style>
+
+</head>
+
+<body class="page-template page-template-p_BMI-Calculator page-template-p_BMI-Calculator-php page page-id-229 no-touch"
+	data-type="d" data-s="4">
+
+	
+
+
+
+	<div class="s-mainheader-blank"></div>
+	<div class="overlay-body"></div>
+	<div id="maincontent" class="body-container">
+		<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/index.html">หน้าหลัก</a></li>
+				<li class="breadcrumb-item active" aria-current="page">คำนวณค่าดัชนีมวลกาย</li>
+			</ol>
+		</nav>
+		<div class="s-page-title">
+			<div class="col-618">
+				<div class="b-page-title b-page-title-s1">
+					<h1>โปรแกรมคำนวณหาค่าดัชนีมวลกาย (BMI)</h1>
+				</div>
+			</div>
+		</div>
+		<!-- // .page-banner -->
+		<div class="s-content s-content-cal">
+			<div class="section section-s1">
+				<div class="b-single-content">
+					<div class="item-content content-style">
+
+						<div class="col-100 col-100fw">
+							<div class="b-cal b-cal-bmi">
+								<div class="col-480">
+									<div class="b-form">
+										<div class="field-block">
+											<label for="field-mass">น้ำหนักตัว (kg.)</label>
+											<input type="number" name="mass" placeholder="" id="field-mass"
+												class="field-text" />
+										</div>
+										<div class="field-block">
+											<label for="field-height">ส่วนสูง (cm.)</label>
+											<input type="number" name="height" placeholder="" id="field-height"
+												class="field-text" />
+										</div>
+										<div class="b-btn">
+											<a href="#" class="bmi-cal-btn cal-btn">
+												<span>คำนวณ</span><i class="material-icons">arrow_downward</i>
+											</a>
+										</div>
+										<div class="b-cal-result bmi-result">
+											<div class="inner">
+												<p class="result-text">BMI</p>
+												<p class="bmi-value result-value" data-bmi="0">0</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-618">
+							<table class="bmi-table" id="bmi-result-table">
+								<tbody>
+									<tr>
+										<th class="first"><strong>BMI kg/m<sup>2</sup></strong></th>
+										<th><strong>อยู่ในเกณท์</strong></th>
+										<th class="last"><strong>ภาวะเสี่ยงต่อโรค</strong></th>
+									</tr>
+									<tr>
+										<td class="first"><span>น้อยกว่า 18.50</span></td>
+										<td><span>น้ำหนักน้อย / ผอม</span></td>
+										<td class="last"><span>มากกว่าคนปกติ</span></td>
+									</tr>
+									<tr>
+										<td class="first"><span>ระหว่าง 18.50 - 22.90</span></td>
+										<td><span>ปกติ (สุขภาพดี)</span></td>
+										<td class="last"><span>เท่าคนปกติ</span></td>
+									</tr>
+									<tr>
+										<td class="first"><span>ระหว่าง 23 - 24.90</span></td>
+										<td><span>ท้วม / โรคอ้วนระดับ 1</span></td>
+										<td class="last"><span>อันตรายระดับ 1</span></td>
+									</tr>
+									<tr>
+										<td class="first"><span>ระหว่าง 25 - 29.90</span></td>
+										<td><span>อ้วน / โรคอ้วนระดับ 2</span></td>
+										<td class="last"><span>อันตรายระดับ 2</span></td>
+									</tr>
+									<tr>
+										<td class="first"><span>มากกว่า 30</span></td>
+										<td><span>อ้วนมาก / โรคอ้วนระดับ 3</span></td>
+										<td class="last"><span>อันตรายระดับ 3</span></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class="accordion" id="accordionExample">
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="headingOne">
+										<button class="accordion-button" type="button" data-bs-toggle="collapse"
+											data-bs-target="#collapseOne" aria-expanded="true"
+											aria-controls="collapseOne">
+											📌 คำแนะนำ 
+										</button>
+									</h2>
+									<div id="collapseOne" class="accordion-collapse collapse show"
+										aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+										<div class="accordion-body">
+											<div class="bmi-desc bmi-desc-1">
+												<p class="bmi-title">BMI น้อยกว่า 18.50</p>
+												<h2>น้ำหนักน้อยกว่ามาตรฐาน</h2>
+												<p>คุณมีน้ำหนักน้อยหรือผอม โดยทั่วไป ค่าดัชนีมวลกายปกติมีค่าน้อยกว่า 18.50</p>
+												<h3>ข้อแนะนำ</h3>
+												<p>1. กรณีกินเยอะแต่ไม่อ้วน ก็ต้องระวังเรื่องคุณภาพของอาหารที่กินเข้าไปด้วย
+													เลือกกินอาหารที่ดี มีประโยชน์ ลดหวาน มัน เค็ม และหลีกเลี่ยงอาหารที่มีไขมันสูง
+													เพราะอาจเพิ่มความเสี่ยงต่อการเป็นโรคเบาหวาน ความดันเลือดสูง ไขมันในเลือดสูง
+													หรือผอมลงพุงได้</p>
+												<p>2. เลือกกินอาหารให้หลากหลายครบ 5 หมู่ โดยเน้นอาหารที่มีโปรตีน
+													เพื่อช่วยในการเสริมสร้างกล้ามเนื้อ หากต้องการเพิ่มน้ำหนัก ให้ไม่ผอมจนเกินไป
+													ให้เพิ่มปริมาณการกินอาหารประมาณ 300-500 กิโลแคลอรี โดยเน้นการกินอาหารที่มีประโยชน์
+													คาร์โบไฮเดรตเชิงซ้อน และไขมันดี</p>
+												<p>3. เคลื่อนไหว และออกกำลังกายสม่ำเสมอ ระดับความหนักปานกลาง
+													โดยเลือกกิจกรรมการออกกำลังกายที่ชื่นชอบและสนุกสนาน เพื่อส่งเสริมให้อยากออกกำลังกาย
+													ลดความเบื่อหน่าย เช่น การเต้นเข้าจังหวะ เดิน วิ่ง ว่ายน้ำ หรือกิจกรรมออกแรง
+													ขยับร่างกายในชีวิตประจำวัน อย่างการทำงานบ้าน การทำสวน เป็นต้น แนะนำให้ออกกำลังกาย
+													อย่างน้อยวันละ 30 นาที หรือ ไม่น้อยกว่า 150 นาทีต่อสัปดาห์</p>
+				
+											</div>
+											<div class="bmi-desc bmi-desc-2">
+												<p class="bmi-title">BMI ระหว่าง 18.50 - 22.90</p>
+												<h2>น้ำหนักปกติ</h2>
+												<p>คุณมีน้ำหนักอยู่ในเกณฑ์มาตรฐาน ค่าดัชนีมวลกายมีค่าระหว่าง 18.50 - 22.90</p>
+												<h3>ข้อแนะนำ</h3>
+												<p>1. เลือกกินอาหารให้ได้สัดส่วนพอเหมาะ และเลือกอาหารที่ดี มีประโยชน์ ครบ 5 หมู่
+													กำหนดปริมาณอาหารให้เพียงพอต่อความต้องการ การใช้พลังงานของร่างกาย
+													อาหารกลุ่มคาร์โบไฮเดรตให้เลือกเป็น ข้าว-แป้งขัดสีน้อย ธัญพืช ไม่น้อยกว่า 6 ทัพพี
+													กินผักหลากหลาย ถั่ว ผลไม้อ่อนหวาน รวมกันไม่น้อยกว่า 400 กรัมต่อวัน
+													เพื่อให้ได้รับสารอาหาร วิตามิน เกลือแร่อย่างเพียงพอ เกิดความสมดุลด้านโภชนาการ
+													และมีส่วนช่วยให้รักษา และควบคุมน้ำหนักให้อยู่ในเกณฑ์ได้</p>
+												<p>2. ออกกำลังกาย หรือเคลื่อนไหวร่างกายสม่ำเสมอ เลือกความเข้มข้นของกิจกรรมการออกกำลังกาย
+													ที่ระดับปานกลาง หรือ ใช้ชีวิตให้กระฉับกระเฉง ลุกเดิน เคลื่อนไหวร่างกายบ่อยๆ
+													หากรักในการออกกำลังกาย ควรเลือกกิจกรรมที่ชื่นชอบและสนุกสนาน จะช่วยลดความเบื่อหน่าย
+													ทำได้บ่อย และสม่ำเสมอมากขึ้น นอกจากนี้การออกกำลังกาย
+													มีส่วนช่วยให้สุขภาพร่างกายแข็งแรง สมบูรณ์ กล้ามเนื้อแข็งแรง
+													มีส่วนช่วยลดความเสี่ยงในการเกิดโรคไม่ติดต่อเรื้อรัง(NCDs) ต่างๆ ได้
+													ถ้าหากต้องการให้สมรรถภาพร่างกายดีขึ้น ควรเลือกการออกกำลังกายแบบแอโรบิค เช่น
+													เดินเร็วๆ วิ่งเหยาะ ถีบจักรยานเร็วๆ กระโดดเชือก ว่ายน้ำ หรือเล่นกีฬา
+													โดยทำสม่ำเสมอวันละ 20 - 30 นาที อย่างน้อย 3 - 4 วัน / สัปดาห์</p>
+				
+											</div>
+				
+											<div class="bmi-desc bmi-desc-3">
+												<p class="bmi-title">BMI ระหว่าง 23 - 24.90</p>
+												<h2>ท้วม / อ้วนระดับ 1</h2>
+												<p>ถ้าคุณไม่ใช่คนออกกำลังกาย คุณเริ่มมีน้ำหนักเกินมาตรฐาน หรือมีรูปร่างท้วม
+													ค่าดัชนีมวลกายมีค่าระหว่าง 23 - 24.90</p>
+												<h3>ข้อแนะนำ</h3>
+												<p>1. ต้องเริ่มควบคุม และเลือกกินอาหารให้เหมาะสม ปรับเปลี่ยนพฤติกรรมการกินอาหาร
+													โดยเน้นเลือกกินอาหารที่ดีมีประโยชน์ ครบ 5 หมู่
+													กำหนดปริมาณตามความต้องการพลังงานของร่างกาย หรือลดจากเดิมเล็กน้อย ประมาณ 200-300
+													กิโลแคลอรี โดยค่าปริมาณพลังงานจากอาหารที่กินในแต่ละวันเฉลี่ยไม่ควรน้อยกว่า 1,000 -
+													1,200 กิโลแคลอรี หรือไม่น้อยกว่าค่า ของแต่ละคน
+													เพื่อป้องกันการจำกัดอาหารมากจนเกินไป ที่อาจส่งผลให้ร่างกายได้รับสารอาหารไม่เพียงพอ
+												</p>
+												<p>ใส่ใจเรื่องโภชนาการให้มากขึ้น ลดอาหารหวาน มัน และเค็มจัด โดยเฉพาะ อาหาร ขนม ของหวาน
+													เครื่องดื่มที่มีน้ำตาล และเครื่องดื่มที่มีแอลกอฮอล์ อาหารแปรรูปต่างๆ
+													กินอาหารให้หลากหลายในสัดส่วนที่เหมาะสม เลือกกินข้าว - แป้ง ขัดสีน้อย ธัญพืชต่างๆ
+													และกินผัก - ผลไม้อย่างน้อย 400 กรัม / วัน ไม่อด ไม่งดอาหารมากจนเกินไป
+													เพื่อให้สามารถควบคุมอาหารได้ดีมากยิ่งขึ้น</p>
+												<p>2. เคลื่อนไหว และออกกำลังกายแบบแอโรบิคอย่างสม่ำเสมอ เลือกความเข้มข้นปานกลาง
+													โดยทำอย่างน้อยวันละ 30 - 40 นาที 4 - 5 วัน/สัปดาห์ สำหรับคนที่ไม่เคยออกกำลังกาย
+													ควรเริ่มด้วยกิจกรรมเบาๆ เช่นการเดิน หรือ วิ่งจ๊อกกิ้ง ปั่นจักรยาน ทำต่อเนื่อง
+													เพื่อให้ร่างกายเกิดความคุ้นเคย และพัฒนาความแข็งแรงขึ้น แล้วจึงค่อยๆ
+													เพิ่มความเข้มข้นของกิจกรรมขึ้นทีละน้อย</p>
+												<p>3. เสริมการฝึกเวทเทรนนิ่ง เพื่อเพิ่มความแข็งแรง และปริมาณของกล้ามเนื้อ
+													ที่มีส่วนช่วยในการเผาผลาญพลังงาน และทำให้ไขมันลดลง
+													สำหรับผู้ที่ไม่เคยฝึกการออกกำลังกายแบบใช้แรงต้าน หรือ เวทเทรนนิ่ง
+													อาจเริ่มต้นด้วยกิจกรรมแบบบอดี้เวทง่ายๆ โดยใช้แรงต้านจากน้ำหนักตัวเอง เช่นการทำท่า
+													แพลงกิ้ง สควอช หรือซิทอัพ ก็ได้ หรือหากต้องการใช้ลูกน้ำหนัก หรืออุปกรณ์เสริมแรงต้าน
+													ก็ควรศึกษาหาข้อมูล หรือรับคำแนะนำจากผู้เชี่ยวชาญ ก่อนลงมือปฏิบัติ
+													เพื่อป้องกันอุบัติเหตุ หรืออันตรายที่อาจเกิดขึ้นจากการออกกำลังกายผิดวิธี</p>
+				
+											</div>
+											<div class="bmi-desc bmi-desc-4">
+												<p class="bmi-title">BMI ระหว่าง 25 - 29.90</p>
+												<h2>อ้วน / อ้วนระดับ 2</h2>
+												<p>ถ้าคุณไม่ใช่คนออกกำลังกาย คุณเข้าเกณฑ์อ้วนแล้ว (อ้วนระดับ 2)
+													ค่าดัชนีมวลกายมีค่าระหว่าง 25 - 29.90</p>
+												<h3>ข้อแนะนำ</h3>
+												<p>1. การควบคุมอาหารมีส่วนสำคัญอย่างมาก ที่จะช่วยให้สามารถลดน้ำหนักให้อยู่ในเกณฑ์ปกติได้
+													ควรปรับเปลี่ยนพฤติกรรมการกินอาหาร โดยเลือกกินอาหารให้หลากกลาย แต่มีประโยชน์
+													กำหนดปริมาณการกินที่เหมาะสม ต่อความต้องการพลังงาน ไม่ลด ไม่งด หรือ
+													อดอาหารมากจนเกินไป ลดพลังงานจากอาหารในแต่ละวันเล็กน้อย ประมาณ 200 - 300 กิโลแคลอรี
+													โดยค่าปริมาณพลังงานจากอาหารที่กินในแต่ละวันเฉลี่ยไม่ควรน้อยกว่า 1,000 - 1,200
+													กิโลแคลอรี หรือไม่น้อยกว่าค่า BMR ของแต่ละคน ลด
+													หรือหลีกเลี่ยงการกินอาหารที่มีน้ำตาลสูง ขนมหวาน , เครื่องดื่มที่มีรสหวาน ของทอด
+													อาหารแปรรูป อาหารที่มีไขมันอิ่มตัวสูง และควรควบคุมอาหารที่มีปริมาณโซเดียมสูงด้วย</p>
+												<p>เลือกกินอาหารโดยเน้นที่โภชนาการครบถ้วน เพื่อให้ร่างกายได้สารอาหาร
+													และวิตามินที่มีประโยชน์ เช่น ข้าว - แป้งขัดสีน้อย ธัญพืช ถั่ว เนื้อสัตว์ไขมันต่ำ
+													อกไก่ ไข่ และเนื้อปลา </p>
+												<p>2. คนที่มีน้ำหนักตัวมาก ก่อนจะเริ่มออกกำลังกาย ควรปรึกษา หรือรับคำแนะนำจากแพทย์
+													หรือผู้เชี่ยวชาญ เพื่อประเมินสมรรถภาพร่างกายเสียก่อน
+													เพื่อป้องกันอันตรายที่อาจเกิดขึ้น จากปัญหาสุขภาพ และร่างกายที่ไม่พร้อม</p>
+												<p>กิจกรรมการออกกำลังกายที่เหมาะกับคนอ้วน หรือคนที่มีน้ำหนักตัวมาก
+													ควรเริ่มที่กิจกรรมที่ไม่หนักมาก ทำได้ง่าย เน้นที่ความหนักปานกลาง เช่นการเดิน
+													หรือการเดินในน้ำ ที่มีส่วนช่วยลดความเสี่ยงต่ออาการบาดเจ็บ จากการออกกำลังกายได้
+													พยายามออกกำลังกายให้ได้สม่ำเสมอ ประมาณ 40 - 60 นาที / วัน หรือ ในระยะเริ่มต้น
+													อาจใช้เวลาน้อยแต่มากครั้งการออกกำลังกาย โดยทำครั้งละ 10 - 20 นาที 2 - 3 ครั้งต่อวัน
+													เมื่อน้ำหนักตัวลดลด ร่างกายแข็งแรงมากขึ้น จึงค่อยๆเพิ่มความเข้มข้นของกิจกรรม
+													หรือเพิ่มเวลาให้ออกกำลังกายนานขึ้น</p>
+												<p>ใช้ชีวิตประจำวันให้กระฉับกระเฉง เคลื่อนไหวร่างกายให้มาก หรือหากิจกรรมภายในบ้าน
+													ที่ช่วยให้ได้ขยับร่างกาย อย่างการทำงานบ้าน ทำสวน หรือลุกเดินไปมาบ่อยๆ</p>
+												<p>3. สร้างกล้ามเนื้อด้วยเวทเทรนนิ่ง การออกกำลังกายโดยใช้แรงต้าน จะช่วยเสริมสร้างปริมาณ
+													และส่งเสริมความแข็งแรงของกล้ามเนื้อ ที่เป็นส่วนสำคัญในการเผาผลาญพลังงาน
+													ช่วยให้การทรงตัวดีขึ้น เคลื่อนไหว และทำกิจกรรมได้สะดวก คล่องตัวขึ้น</p>
+												<p>คนที่มีน้ำหนักตัวมากๆ อยากเริ่มเวทเทรนนิ่ง ควรได้รับคำแนะนำจากผู้เชี่ยวชาญ หรือ
+													ครูฝึกที่มีประสบการณ์ เพื่อป้องกันการบาดเจ็บ จากกการออกกำลังกายผิดวิธี
+													และการใช้อุปกรณ์ที่ไม่ถูกต้อง ควรศึกษา และหาท่าทางที่เหมาะสมกับรูปร่าง ไม่ฝืน
+													หรือหักโหมจนเกินไป ทำอย่างสม่ำเสมอ ค่อยเป็นค่อยไป เมื่อกล้ามเนื้อแข็งแรงมากขึ้น
+													ทรงตัวได้ดีขึ้น จึงค่อยปรับความเข้มข้นของกิจกรรม ท่าทางและน้ำหนักของแรงต้าน
+													ตามความสามารถของร่างกาย</p>
+				
+											</div>
+											<div class="bmi-desc bmi-desc-5">
+												<p class="bmi-title">BMI มากกว่า 30</p>
+												<h2>อ้วนมาก / อ้วนระดับ 3</h2>
+												<p><strong>แย่แล้ว!!</strong> ถ้าคุณไม่ใช้คนออกกำลังกาย หรือนักเพาะกาย คุณอ้วนมากแล้ว
+													(อ้วนระดับ 3) ค่าดัชนีมวลกายมีค่ามากกว่า 30</p>
+												<h3>ข้อแนะนำ</h3>
+												<p>เพื่อสุขภาพที่ดีขึ้น คุณต้องปรับเปลี่ยนพฤติกรรมแล้ว
+													ถ้าอยากเปลี่ยนตัวเองให้กลับมามีรูปร่างสมส่วน โรคร้ายไม่ถามหา
+													ต้องเริ่มใส่ใจเรื่องโภชนาการ และออกกำลังกายแล้ว โภชนาการมีส่วนสำคัญ ที่จะช่วยให้ลด
+													และควบคุมน้ำหนักได้ดีขึ้น สำหรับคนที่คิดว่าตัวเองกินน้อย กินอาหารปกติแต่ยัง อ้วนมากๆ
+													ควรเข้ารับคำปรึกษาจากแพทย์ เพื่อรับรักษาภาวะโรคอ้วน หรือถ้าอ้วนจากความเผลอเลอ กินดุ
+													กินเก่ง ต้องควบคุมการกินอาหารให้ดี เลือกกินอาหารที่ดีมีประโยชน์ต่อร่างกาย
+													ในปริมาณที่เหมาะสม ไม่งด ไม่อดอาหารมากจนเกินไป เพราะจะทำให้โหย หิวบ่อย
+													และยอมแพ้ไปก่อน อาจลดปริมาณอาหารที่กินในแต่ละวันเล็กน้อยประมาณ 200 - 300 กิโลแคลอรี
+													โดยค่าปริมาณพลังงานจากอาหารที่กินในแต่ละวันเฉลี่ยไม่ควรน้อยกว่า 1,000 - 1,200
+													กิโลแคลอรี หรือต้องไม่น้อยกว่าค่า BMR ของแต่ละคน</p>
+												<p>เลือกกินให้มากๆ ลดอาหารหวาน ของหวาน ขนม เครื่องดื่มที่มีน้ำตาล งด
+													หรือหลีกเลี่ยงของทอด อาหารไขมันสูง อาหารที่มีไขมันอิ่มตัวสูง อาหารแปรรูป เบเกอรี่
+													ขนมซองต่างๆ และเครื่องดื่มที่มีแอลกอฮอล์ อาหารเค็มจัด โซเดียมสูง</p>
+												<p>ไม่กินอาหารตามใจ ไม่กินอาหารแก้เครียด ไม่กินจุบจิบ พยายามเลือกกินอาหารที่มีประโยชน์
+													ผัก - ผลไม้อ่อนหวาน เลือกข้าว - แป้งที่ขัดสีน้อย ธัญพืช เมล็ดพืช ถั่ว
+													สำหรับเนื้อสัตว์ เลือกเนื้อสัตว์ส่วนที่มีไขมันต่ำ เนื้อส่วนอก ไข่ไก่ หรือ
+													เนื้อสัตว์ที่ให้ไขมันดีอย่างเนื้อปลา เป็นต้น</p>
+												<p>2. ควรหมั่นเคลื่อนไหวร่างกาย ทำกิจวัตรประจำวันให้กระฉับกระเฉง ลุกขึ้นยืน เดินให้มาก
+													และหากิจกรรมที่ช่วยให้ได้ขยับร่างกายมากขึ้น หากต้องการที่จะเริ่มการออกกำลังกาย
+													ควรเข้ารับคำแนะนำจากแพทย์ หรือผู้เชี่ยวชาญ เพื่อประเมินความพร้อมด้านสุขภาพ
+													และร่างกาย เสียก่อน</p>
+												<p>เริ่มต้นออกกำลังกายด้วยกิจกรรมเบาๆ เหมาะสมกับสภาพร่างกาย โดยค่อยทำทีละน้อย
+													แต่ทำอย่างสม่ำเสมอ เมื่อร่างกายแข็งแรงขึ้น จึงค่อยๆ
+													ปรับโปรแกรมการออกกำลังกายให้เข้มข้นมากขึ้น หรือ ใช้เวลาการออกกำลังกายให้นานขึ้น
+													เลือกกิจกรรมการออกกำลังกายที่ปะทะน้อย แรงกระแทกต่ำ อย่างการเดิน การเดินในน้ำ
+													ยืนแกว่งแขน หรือกิจกรรมที่ไม่หักโหมจนเกินไป
+													โดยพยายามตั้งเป้าหมายการออกกำลังกายให้ได้ 40 - 60 นาทีต่อวัน หรือจะแบ่งเป็นช่วงสั้นๆ
+													ครั้งละ 10 - 20 นาที 2 - 3 ครั้งต่อวัน ก็ได้</p>
+												<p>3. ควรฝึกความแข็งแรงของกล้ามเนื้อด้วยกิจกรรมเวทเทรนนิ่ง ที่ควบคุมโดยผู้เชี่ยวชาญ
+													จะช่วยให้การฝึกปลอดภัย ถูกต้องและเหมาะสม เพื่อลดความเสี่ยงในการเกิดอุบัติเหตุ
+													และอาการบาดเจ็บได้ การฝึกควรทำอย่างค่อยเป็นค่อยไป ตามความแข็งแรงของร่างกาย ไม่ฝืน
+													ไม่หักโหม และเมื่อน้ำหนักตัวลดลง กล้ามเนื้อ ร่างกายแข็งแรงขึ้น
+													จึงค่อยปรับเปลี่ยนโปรแกรมการฝึก ให้เข้มข้น หรือใช้เวลาในการออกกำลังกายมากขึ้น</p>
+				
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</div> <!-- // .body-container -->
+
+	<!-- JAVASCRIPTS
+========================================== -->
+	<script type="text/javascript"
+		src="https://www.lovefitt.com/system/wp-content/themes/lovefitt/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript"
+		src="https://www.lovefitt.com/system/wp-content/themes/lovefitt/js/modernizr-custom.js"></script>
+	<script type="text/javascript"
+		src="https://www.lovefitt.com/system/wp-content/themes/lovefitt/js/js-dev.js?v=5.03"></script>
+	<!-- Facebook -->
+	<div id="fb-root"></div>
+	<script async defer
+		src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=374602919301610&autoLogAppEvents=1"></script>
+	<!-- Pinterest -->
+	<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+	<script type="text/javascript"
+		src="https://www.lovefitt.com/system/wp-content/plugins/wp-smushit/app/assets/js/smush-lazy-load.min.js?ver=3.14.2"
+		id="smush-lazy-load-js"></script>
+
+</body>
+
+</html>
